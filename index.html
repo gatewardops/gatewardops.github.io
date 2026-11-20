@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GatewardOps — IT tools, guides and notes</title>
+<meta name="description" content="GatewardOps: practical IT tools that run in your browser, plus guides, downloads and daily IT news.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1424">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1424'/%3E%3Cpath d='M9 8h14v4H13v8h6v-3h-3v-4h7v11H9z' fill='%23f2a900'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Colours and fonts: change these to restyle the whole site ===== */
+  :root {
+    --bg:        #0b1424;  /* page background (dark navy) */
+    --bg-raised: #111d33;  /* cards and panels */
+    --bg-input:  #0d1829;  /* form fields */
+    --line:      #22324f;  /* borders */
+    --text:      #e6ebf4;  /* main text */
+    --text-dim:  #9aa8c0;  /* secondary text */
+    --accent:    #f2a900;  /* the one accent colour (amber) */
+    --accent-ink:#1a1200;  /* text on top of the accent */
+    --error:     #ff8a80;
+    --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --radius: 8px;
+    --max: 1080px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 16px/1.6 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  code, .mono { font-family: var(--font-mono); }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; border-radius: var(--radius); z-index: 10; }
+  .skip:focus { left: 8px; }
+
+  /* Header */
+  header.site { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(11,20,36,.92); backdrop-filter: blur(6px); z-index: 5; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; letter-spacing: .01em; }
+  .brand-mark { width: 26px; height: 26px; }
+  .brand span { font-family: var(--font-mono); font-weight: 500; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex-wrap: wrap; }
+  nav a { color: var(--text-dim); text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 15px; }
+  nav a:hover { color: var(--text); background: var(--bg-raised); }
+
+  /* Hero + calculator */
+  .hero { padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: start; }
+  .eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; }
+  h1 { font-size: clamp(30px, 4.5vw, 44px); line-height: 1.15; margin: 0 0 16px; font-weight: 700; letter-spacing: -.01em; }
+  .lead { color: var(--text-dim); font-size: 18px; margin: 0 0 24px; max-width: 44ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .chips li { font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+
+  .panel { background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .panel h2 { font-size: 18px; margin: 0 0 4px; }
+  .panel .hint { color: var(--text-dim); font-size: 14px; margin: 0 0 16px; }
+  label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .field-row { display: flex; gap: 8px; }
+  input[type="text"] {
+    flex: 1; min-width: 0;
+    background: var(--bg-input); color: var(--text);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 10px 12px; font: 500 16px var(--font-mono);
+  }
+  input[type="text"]:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(242,169,0,.2); }
+  input[aria-invalid="true"] { border-color: var(--error); }
+  .btn { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 6px; padding: 10px 16px; font: 600 15px var(--font-sans); cursor: pointer; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--line); font-weight: 500; }
+  .btn-ghost:hover { color: var(--text); }
+  .examples { margin: 10px 0 0; font-size: 13px; color: var(--text-dim); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .examples button { background: none; border: 1px dashed var(--line); color: var(--text-dim); font: 400 13px var(--font-mono); padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+  .examples button:hover { color: var(--accent); border-color: var(--accent); }
+  .error { color: var(--error); font-size: 14px; min-height: 1.4em; margin: 8px 0 0; }
+
+  dl.results { display: grid; grid-template-columns: auto 1fr; gap: 0; margin: 12px 0 0; border-top: 1px solid var(--line); }
+  dl.results dt, dl.results dd { padding: 8px 0; border-bottom: 1px solid var(--line); margin: 0; }
+  dl.results dt { color: var(--text-dim); font-size: 14px; padding-right: 16px; }
+  dl.results dd { font-family: var(--font-mono); font-size: 15px; text-align: right; word-break: break-all; }
+  dl.results dd.bin { font-size: 12px; color: var(--text-dim); }
+
+  /* Sections */
+  section.block { padding: 56px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 64px; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .section-head h2 { font-size: 26px; margin: 0; }
+  .section-head p { color: var(--text-dim); margin: 0; max-width: 52ch; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+  .card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .card h3 { font-size: 17px; margin: 0; }
+  .card p { color: var(--text-dim); margin: 0; font-size: 15px; flex: 1; }
+  .card .meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+  .tag { align-self: flex-start; font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--text-dim); }
+  .tag.live { border-color: var(--accent); color: var(--accent); }
+  .card.planned { border-style: dashed; }
+
+  footer { padding: 32px 0 48px; color: var(--text-dim); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 820px) {
+    .hero { padding-top: 36px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    nav a { padding: 6px 8px; }
+    header.site { position: static; }
+    header.site .wrap { padding-top: 8px; padding-bottom: 8px; }
+    section.block { scroll-margin-top: 0; }
+  }
+  @media (max-width: 560px) {
+    .field-row { flex-wrap: wrap; }
+    .field-row input[type="text"] { flex-basis: 100%; }
+    .field-row .btn { flex: 1; }
+    .panel { padding: 18px; }
+    dl.results dd { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="GatewardOps home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#111d33" stroke="#22324f"/><path d="M9 8h14v4H13v8h6v-3h-3v-4h7v11H9z" fill="#f2a900"/></svg>
+      <span>gatewardops</span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#news">News</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#downloads">Downloads</a></li>
+        <li><a href="#guides">Guides</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">IT operations · networking · automation</p>
+        <h1>Practical IT tools that run in your browser.</h1>
+        <p class="lead">Calculators, cheat sheets and step-by-step guides for everyday admin work. Nothing is sent to a server; every tool here runs locally on your device.</p>
+        <ul class="chips" aria-label="Topics">
+          <li>Networking</li><li>Linux</li><li>Windows</li><li>PowerShell</li><li>Python</li><li>DNS</li><li>Security</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="cidr">
+        <h2>CIDR / subnet calculator</h2>
+        <p class="hint">Enter an IPv4 address with a prefix, e.g. <code>10.0.0.0/8</code>, or with a mask such as <code>192.168.1.10 255.255.255.0</code>.</p>
+        <form id="cidr-form" novalidate>
+          <label for="cidr-input">IPv4 address / prefix</label>
+          <div class="field-row">
+            <input id="cidr-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="192.168.1.10/24" aria-describedby="cidr-error">
+            <button class="btn" type="submit">Calculate</button>
+            <button class="btn btn-ghost" type="button" id="cidr-copy" title="Copy results as text">Copy</button>
+          </div>
+          <div class="examples">Try:
+            <button type="button" data-v="10.20.30.40/16">10.20.30.40/16</button>
+            <button type="button" data-v="172.16.5.130/26">172.16.5.130/26</button>
+            <button type="button" data-v="203.0.113.7/30">203.0.113.7/30</button>
+          </div>
+          <p class="error" id="cidr-error" role="alert"></p>
+        </form>
+        <dl class="results" id="cidr-results" aria-live="polite"></dl>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="news" aria-labelledby="news-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="news-h">News</h2>
+        <p>A short daily digest of IT and security headlines, collected automatically.</p>
+      </div>
+      <ul class="cards">
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Daily IT digest</h3>
+          <p>A scheduled job will collect headlines from public RSS feeds and publish a short list here each morning.</p>
+          <span class="meta">Python · GitHub Actions</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="tools" aria-labelledby="tools-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="tools-h">Tools</h2>
+        <p>Small utilities that run entirely in the browser. No sign-up, no tracking.</p>
+      </div>
+      <ul class="cards">
+        <li class="card">
+          <span class="tag live">Live</span>
+          <h3>CIDR / subnet calculator</h3>
+          <p>Network, broadcast, host range, mask and wildcard for any IPv4 block.</p>
+          <a href="#cidr">Open calculator</a>
+        </li>
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Hash generator</h3>
+          <p>SHA-1, SHA-256 and SHA-512 for text or files, using the browser's built-in crypto.</p>
+        </li>
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>JWT decoder</h3>
+          <p>Decode a token's header and payload and check its expiry time, without sending it anywhere.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="downloads" aria-labelledby="downloads-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="downloads-h">Downloads</h2>
+        <p>Scripts and cheat sheets, free to use. Each script is commented so you can read it before you run it.</p>
+      </div>
+      <ul class="cards">
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Subnetting cheat sheet</h3>
+          <p>Prefix lengths, masks and host counts on one printable page.</p>
+          <span class="meta">PDF</span>
+        </li>
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Network diagnostics script</h3>
+          <p>Runs common connectivity checks and saves the output to a single report.</p>
+          <span class="meta">PowerShell</span>
+        </li>
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Linux command reference</h3>
+          <p>Everyday commands for files, processes, networking and permissions.</p>
+          <span class="meta">PDF</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="guides" aria-labelledby="guides-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="guides-h">Guides</h2>
+        <p>Step-by-step write-ups of real setups, with what went wrong along the way.</p>
+      </div>
+      <ul class="cards">
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Custom domain on GitHub Pages</h3>
+          <p>A, AAAA and CNAME records, domain verification and enforcing HTTPS.</p>
+          <span class="meta">DNS · Hosting</span>
+        </li>
+        <li class="card planned">
+          <span class="tag">Planned</span>
+          <h3>Automating a daily news page</h3>
+          <p>Fetching RSS feeds with Python and publishing on a schedule with GitHub Actions.</p>
+          <span class="meta">Python · CI</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">gatewardops.com</span>
+    <span>Static site hosted on GitHub Pages. No cookies, no analytics.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var form = document.getElementById("cidr-form");
+  var input = document.getElementById("cidr-input");
+  var errorEl = document.getElementById("cidr-error");
+  var out = document.getElementById("cidr-results");
+  var copyBtn = document.getElementById("cidr-copy");
+  var lastRows = [];
+
+  function parseIp(s) {
+    var parts = s.split(".");
+    if (parts.length !== 4) return null;
+    var n = 0;
+    for (var i = 0; i < 4; i++) {
+      if (!/^\d{1,3}$/.test(parts[i])) return null;
+      var v = Number(parts[i]);
+      if (v > 255) return null;
+      n = n * 256 + v;
+    }
+    return n >>> 0;
+  }
+
+  function toIp(n) {
+    return [n >>> 24, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join(".");
+  }
+
+  function toBin(n) {
+    var b = (n >>> 0).toString(2).padStart(32, "0");
+    return b.match(/.{8}/g).join(".");
+  }
+
+  function maskFromPrefix(p) {
+    return p === 0 ? 0 : (0xFFFFFFFF << (32 - p)) >>> 0;
+  }
+
+  function prefixFromMask(m) {
+    // Valid masks are a run of 1s followed by 0s.
+    var inv = (~m) >>> 0;
+    if ((inv & (inv + 1)) !== 0) return -1;
+    var p = 0;
+    while (p < 32 && (m & (0x80000000 >>> p))) p++;
+    return p;
+  }
+
+  function classify(ip) {
+    var a = ip >>> 24, b = (ip >>> 16) & 255;
+    if (a === 10 || (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168)) return "Private (RFC 1918)";
+    if (a === 127) return "Loopback";
+    if (a === 169 && b === 254) return "Link-local";
+    if (a === 100 && b >= 64 && b <= 127) return "Shared / CGNAT (RFC 6598)";
+    if (a >= 224 && a <= 239) return "Multicast";
+    if (a >= 240) return "Reserved";
+    if (a === 0) return "\"This\" network";
+    if ((a === 192 && b === 0 && ((ip >>> 8) & 255) === 2) ||
+        (a === 198 && b === 51 && ((ip >>> 8) & 255) === 100) ||
+        (a === 203 && b === 0 && ((ip >>> 8) & 255) === 113)) return "Documentation (TEST-NET)";
+    return "Public";
+  }
+
+  function parseInput(raw) {
+    var s = raw.trim();
+    var ipStr, prefix;
+    var m = s.match(/^([\d.]+)\s*\/\s*(\d{1,2})$/);
+    if (m) {
+      ipStr = m[1]; prefix = Number(m[2]);
+      if (prefix > 32) return { error: "The prefix must be between 0 and 32." };
+    } else {
+      m = s.match(/^([\d.]+)\s+([\d.]+)$/);
+      if (m) {
+        ipStr = m[1];
+        var mask = parseIp(m[2]);
+        if (mask === null) return { error: "That subnet mask is not a valid IPv4 address." };
+        prefix = prefixFromMask(mask);
+        if (prefix < 0) return { error: "That subnet mask is not contiguous (for example 255.255.0.255 is not valid)." };
+      } else if (/^[\d.]+$/.test(s)) {
+        ipStr = s; prefix = 32;
+      } else {
+        return { error: "Use the form 192.168.1.0/24 or 192.168.1.0 255.255.255.0." };
+      }
+    }
+    var ip = parseIp(ipStr);
+    if (ip === null) return { error: "Each part of the address must be a number from 0 to 255." };
+    return { ip: ip, prefix: prefix };
+  }
+
+  function calculate(ip, prefix) {
+    var mask = maskFromPrefix(prefix);
+    var wildcard = (~mask) >>> 0;
+    var network = (ip & mask) >>> 0;
+    var broadcast = (network | wildcard) >>> 0;
+    var total = Math.pow(2, 32 - prefix);
+    var first, last, usable;
+    if (prefix === 32) { first = last = network; usable = 1; }
+    else if (prefix === 31) { first = network; last = broadcast; usable = 2; } // RFC 3021 point-to-point
+    else { first = network + 1; last = broadcast - 1; usable = total - 2; }
+
+    var rows = [
+      ["Address", toIp(ip)],
+      ["Network", toIp(network) + "/" + prefix],
+      ["Subnet mask", toIp(mask)],
+      ["Wildcard mask", toIp(wildcard)],
+      ["Broadcast", prefix >= 31 ? "n/a" : toIp(broadcast)],
+      ["First usable host", toIp(first)],
+      ["Last usable host", toIp(last)],
+      ["Usable hosts", usable.toLocaleString("en-US") + (prefix === 31 ? " (point-to-point)" : "")],
+      ["Total addresses", total.toLocaleString("en-US")],
+      ["Address type", classify(ip)],
+      ["Mask in binary", toBin(mask), true]
+    ];
+    return rows;
+  }
+
+  function render(rows) {
+    out.innerHTML = "";
+    rows.forEach(function (r) {
+      var dt = document.createElement("dt");
+      dt.textContent = r[0];
+      var dd = document.createElement("dd");
+      dd.textContent = r[1];
+      if (r[2]) dd.className = "bin";
+      out.appendChild(dt);
+      out.appendChild(dd);
+    });
+  }
+
+  function run() {
+    var res = parseInput(input.value);
+    if (res.error) {
+      errorEl.textContent = res.error;
+      input.setAttribute("aria-invalid", "true");
+      return;
+    }
+    errorEl.textContent = "";
+    input.removeAttribute("aria-invalid");
+    lastRows = calculate(res.ip, res.prefix);
+    render(lastRows);
+  }
+
+  form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+  input.addEventListener("input", function () {
+    if (!parseInput(input.value).error) run();
+  });
+  document.querySelectorAll(".examples button").forEach(function (b) {
+    b.addEventListener("click", function () { input.value = b.getAttribute("data-v"); run(); input.focus(); });
+  });
+  copyBtn.addEventListener("click", function () {
+    if (!lastRows.length) return;
+    var text = lastRows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n");
+    var done = function () { copyBtn.textContent = "Copied"; setTimeout(function () { copyBtn.textContent = "Copy"; }, 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { copyBtn.textContent = "Copy failed"; });
+    }
+  });
+
+  run();
+})();
+</script>
+</body>
+</html>
