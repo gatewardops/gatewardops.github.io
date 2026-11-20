@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom domain on GitHub Pages — GatewardOps</title>
+<meta name="description" content="Step-by-step: point your own domain at GitHub Pages with A and CNAME records, verify it, enforce HTTPS, and keep your email out of commits.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1424">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1424'/%3E%3Cpath d='M9 8h14v4H13v8h6v-3h-3v-4h7v11H9z' fill='%23f2a900'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1424; --bg-raised: #111d33; --bg-input: #0d1829; --line: #22324f;
+    --text: #e6ebf4; --text-dim: #9aa8c0; --accent: #f2a900; --accent-ink: #1a1200;
+    --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --radius: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.7 var(--font-sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; border-radius: var(--radius); }
+  .skip:focus { left: 8px; }
+  header.site { border-bottom: 1px solid var(--line); }
+  header.site .wrap { max-width: 1080px; display: flex; align-items: center; justify-content: space-between; min-height: 60px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-family: var(--font-mono); font-weight: 500; }
+  .brand svg { width: 26px; height: 26px; }
+  header.site nav a { color: var(--text-dim); text-decoration: none; font-size: 15px; }
+  header.site nav a:hover { color: var(--text); }
+  article { padding: 48px 0 64px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; }
+  h1 { font-size: clamp(28px, 4.5vw, 40px); line-height: 1.2; margin: 0 0 12px; }
+  .lead { color: var(--text-dim); font-size: 19px; margin: 0 0 8px; }
+  .meta { font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin: 0 0 32px; }
+  h2 { font-size: 24px; margin: 44px 0 12px; scroll-margin-top: 16px; }
+  h3 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { color: var(--text); }
+  code { font-family: var(--font-mono); font-size: .88em; background: var(--bg-raised); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
+  pre { background: var(--bg-input); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; overflow-x: auto; font: 400 14px/1.6 var(--font-mono); }
+  pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--text-dim); font-weight: 500; font-size: 14px; }
+  td code { white-space: nowrap; }
+  .callout { background: var(--bg-raised); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 14px 18px; margin: 20px 0; }
+  .callout p { margin: 0; }
+  .toc { background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin: 0 0 8px; }
+  .toc h2 { font-size: 15px; margin: 0 0 6px; color: var(--text-dim); font-weight: 500; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc a { color: var(--text); }
+  .toc a:hover { color: var(--accent); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--text-dim); font-size: 14px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="GatewardOps home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#111d33" stroke="#22324f"/><path d="M9 8h14v4H13v8h6v-3h-3v-4h7v11H9z" fill="#f2a900"/></svg>
+      gatewardops
+    </a>
+    <nav aria-label="Main"><a href="../#guides">← All guides</a></nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="wrap">
+  <p class="eyebrow">Guide · DNS · Hosting</p>
+  <h1>Custom domain on GitHub Pages</h1>
+  <p class="lead">How to serve a static site from your own domain with free HTTPS, using GitHub Pages and a few DNS records.</p>
+  <p class="meta">This is how gatewardops.com is set up.</p>
+
+  <nav class="toc" aria-label="On this page">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#how">How the pieces fit together</a></li>
+      <li><a href="#repo">Create the repository</a></li>
+      <li><a href="#dns">Add the DNS records</a></li>
+      <li><a href="#pages">Configure GitHub Pages</a></li>
+      <li><a href="#verify">Verify the domain</a></li>
+      <li><a href="#https">Enforce HTTPS</a></li>
+      <li><a href="#privacy">Keep personal details out</a></li>
+      <li><a href="#trouble">Troubleshooting</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="how">1. How the pieces fit together</h2>
+  <p>Three separate things make a website reachable:</p>
+  <ul>
+    <li><strong>Repository</strong>: where the files and their history live (GitHub).</li>
+    <li><strong>Hosting</strong>: the servers that deliver the files to visitors (GitHub Pages).</li>
+    <li><strong>Domain</strong>: the address people type. DNS records at your registrar point that address at the hosting.</li>
+  </ul>
+  <p>Because they are separate, you can later move hosting without touching the files. Only the DNS records change.</p>
+
+  <h2 id="repo">2. Create the repository</h2>
+  <p>For a user site, name the repository <code>&lt;username&gt;.github.io</code>. Put <code>index.html</code> in the root of the <code>main</code> branch, plus a file named <code>CNAME</code> (no extension) that contains only your domain:</p>
+  <pre><code>example.com</code></pre>
+  <p>GitHub Pages reads this file to know which domain the site answers to. If you set the domain in the settings instead, GitHub creates the file for you.</p>
+
+  <h2 id="dns">3. Add the DNS records</h2>
+  <p>At your domain registrar, add these records. The apex (<code>@</code>) needs A records, because a CNAME is not allowed at the root of a zone. The <code>www</code> subdomain uses a CNAME to your GitHub Pages hostname.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col">Type</th><th scope="col">Host</th><th scope="col">Value</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.108.153</code></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.109.153</code></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.110.153</code></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.111.153</code></td></tr>
+      <tr><td>CNAME</td><td><code>www</code></td><td><code>&lt;username&gt;.github.io</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>For IPv6, you can also add AAAA records for <code>@</code>: <code>2606:50c0:8000::153</code>, <code>2606:50c0:8001::153</code>, <code>2606:50c0:8002::153</code> and <code>2606:50c0:8003::153</code>.</p>
+  <p>Remove any old A, AAAA or CNAME records for the same hosts, such as a registrar's parking page, or visitors may land on the wrong server. Then check the records from a terminal:</p>
+  <pre><code># PowerShell
+Resolve-DnsName example.com -Type A
+Resolve-DnsName www.example.com -Type CNAME
+
+# Linux / macOS
+dig +short example.com A
+dig +short www.example.com CNAME</code></pre>
+
+  <h2 id="pages">4. Configure GitHub Pages</h2>
+  <ol>
+    <li>Open the repository's <strong>Settings → Pages</strong>.</li>
+    <li>Under <em>Build and deployment</em>, choose <strong>Deploy from a branch</strong>, branch <code>main</code>, folder <code>/ (root)</code>.</li>
+    <li>Under <em>Custom domain</em>, enter your apex domain (for example <code>example.com</code>) and save. Wait for <strong>DNS check successful</strong>.</li>
+  </ol>
+  <p>With both the apex and <code>www</code> records in place, GitHub redirects <code>www.example.com</code> to <code>example.com</code> automatically.</p>
+  <div class="callout"><p>If the site is plain HTML, add an empty file named <code>.nojekyll</code> to the root. Pages then serves the files as they are instead of running them through Jekyll, so deployments are faster.</p></div>
+
+  <h2 id="verify">5. Verify the domain</h2>
+  <p>Verification proves the domain is yours, so nobody else can attach it to their own Pages site if your site is ever unpublished (a "domain takeover"). In your account, go to <strong>Settings → Pages → Add a domain</strong>. GitHub shows a TXT record like this:</p>
+  <pre><code>Type:  TXT
+Host:  _github-pages-challenge-&lt;username&gt;
+Value: &lt;random code from GitHub&gt;</code></pre>
+  <p>Add it at your registrar, click <strong>Verify</strong>, and leave the record in place afterwards.</p>
+
+  <h2 id="https">6. Enforce HTTPS</h2>
+  <p>After the DNS check passes, GitHub requests a free TLS certificate from Let's Encrypt. That can take from a few minutes up to an hour. Once it is ready, tick <strong>Enforce HTTPS</strong> on the Pages settings page, and plain <code>http://</code> requests are redirected to <code>https://</code>.</p>
+  <pre><code># Should answer 301 with Location: https://example.com/
+curl -sI http://example.com/</code></pre>
+
+  <h2 id="privacy">7. Keep personal details out</h2>
+  <p>A public repository publishes more than the website itself. Check these before your first commit:</p>
+  <ul>
+    <li><strong>Commit email.</strong> Every commit records an author email, and anyone can read it by adding <code>.patch</code> to a commit URL. In <strong>Settings → Emails</strong>, turn on <em>Keep my email addresses private</em>, and set Git on your computer to the noreply address:
+      <pre><code>git config --global user.email "&lt;id&gt;+&lt;username&gt;@users.noreply.github.com"</code></pre>
+      Changing the setting does not hide commits you have already made. Those keep the old email until the history is rewritten.</li>
+    <li><strong>WHOIS.</strong> Turn on privacy protection at your registrar, so the public registration record shows a proxy service instead of your name and address. Check it with an RDAP lookup.</li>
+    <li><strong>File metadata.</strong> Photos and PDFs can contain names, GPS locations and device details. Strip the metadata (EXIF) before uploading.</li>
+  </ul>
+
+  <h2 id="trouble">8. Troubleshooting</h2>
+  <h3>503 or 404 right after setup</h3>
+  <p>The first deployment takes a minute or two. Look in the repository's <strong>Actions</strong> tab for the <em>pages build and deployment</em> run. Once it has finished, the error usually goes away within a few minutes.</p>
+  <h3>"DNS check unsuccessful"</h3>
+  <p>The records have not reached GitHub yet, or an old record is still there. Compare the output of <code>Resolve-DnsName</code> or <code>dig</code> with the table above. Changes can take up to a day to spread, depending on the record's TTL.</p>
+  <h3>Enforce HTTPS is greyed out</h3>
+  <p>The certificate has not been issued yet. Wait, then reload the settings page. If it stays greyed out, remove the custom domain, save, add it again and save. That restarts the certificate request.</p>
+  <h3>The custom domain disappears after a push</h3>
+  <p>The <code>CNAME</code> file is missing from the branch Pages builds from. Commit it to the root of the repository.</p>
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="../">gatewardops.com</a> · Static site hosted on GitHub Pages. No cookies, no analytics.
+  </div>
+</footer>
+</body>
+</html>
