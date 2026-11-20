@@ -1,6 +1,18 @@
 {
-  "updated": "2026-11-20T01:15:50Z",
+  "updated": "2026-11-20T06:11:02Z",
   "items": [
+    {
+      "title": "New Unpatched Windows 0-Day FastUnlock Lets Someone Holding a Locked PC Run Programs on It",
+      "link": "https://thehackernews.com/2026/11/new-unpatched-windows-0-day-fastunlock.html",
+      "source": "The Hacker News",
+      "published": "2026-11-20T05:30:01Z"
+    },
+    {
+      "title": "ISC Stormcast For Friday, November 20th, 2026 https://isc.sans.edu/podcastdetail/10188, (Fri, Nov 20th)",
+      "link": "https://isc.sans.edu/diary/rss/33538",
+      "source": "SANS ISC",
+      "published": "2026-11-20T02:00:02Z"
+    },
     {
       "title": "VMware patches vCenter zero-day exploited in attacks since September",
       "link": "https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/",
@@ -38,12 +50,6 @@
       "published": "2026-11-19T16:59:56Z"
     },
     {
-      "title": "PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution",
-      "link": "https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html",
-      "source": "The Hacker News",
-      "published": "2026-11-19T15:18:07Z"
-    },
-    {
       "title": "Elecbrakes EB2, VM1, ELBC2000",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02",
       "source": "CISA Advisories",
@@ -78,12 +84,6 @@
       "link": "https://isc.sans.edu/diary/rss/33534",
       "source": "SANS ISC",
       "published": "2026-11-19T01:53:48Z"
-    },
-    {
-      "title": "Java4Shell, NGINX2Shell and more: Why we are not at \"Yellow\", (Wed, Nov 18th)",
-      "link": "https://isc.sans.edu/diary/rss/33532",
-      "source": "SANS ISC",
-      "published": "2026-11-18T19:54:50Z"
     },
     {
       "title": "Attackers Used Optimizely to A/B Test Malware on Top Websites",
