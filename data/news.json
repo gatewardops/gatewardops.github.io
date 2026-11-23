@@ -1,41 +1,53 @@
 {
-  "updated": "2026-11-22T06:01:53Z",
+  "updated": "2026-11-23T06:11:41Z",
   "items": [
     {
-      "title": "Rackspace Spot breach let hackers access customer Kubernetes secrets",
-      "link": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/",
-      "source": "BleepingComputer",
-      "published": "2026-11-21T22:59:58Z"
+      "title": "ISC Stormcast For Monday, November 23rd, 2026 https://isc.sans.edu/podcastdetail/10190, (Mon, Nov 23rd)",
+      "link": "https://isc.sans.edu/diary/rss/33548",
+      "source": "SANS ISC",
+      "published": "2026-11-23T02:00:04Z"
     },
     {
-      "title": "Microsoft Entra Connect Health flaw exploited to steal tenant data",
-      "link": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/",
+      "title": "Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices",
+      "link": "https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/",
       "source": "BleepingComputer",
-      "published": "2026-11-21T18:01:58Z"
+      "published": "2026-11-22T18:45:37Z"
     },
     {
-      "title": "BADBOX botnet returns with record-breaking 40 billion daily ad requests",
-      "link": "https://www.bleepingcomputer.com/news/security/badbox-30-botnet-returns-with-record-breaking-40-billion-daily-ad-requests/",
+      "title": "A brief history of syslog timestamps, (Sun, Nov 22nd)",
+      "link": "https://isc.sans.edu/diary/rss/33530",
+      "source": "SANS ISC",
+      "published": "2026-11-22T18:40:18Z"
+    },
+    {
+      "title": "Cleverbridge warns hackers stole credit card numbers, CVVs in data breach",
+      "link": "https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/",
       "source": "BleepingComputer",
-      "published": "2026-11-21T15:17:27Z"
+      "published": "2026-11-22T15:43:04Z"
+    },
+    {
+      "title": "Signal to block Siri, Gemini AI from capturing chats on iOS, Android",
+      "link": "https://www.bleepingcomputer.com/news/security/signal-to-block-siri-gemini-ai-from-capturing-chats-on-ios-android/",
+      "source": "BleepingComputer",
+      "published": "2026-11-22T15:15:25Z"
+    },
+    {
+      "title": "OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms",
+      "link": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html",
+      "source": "The Hacker News",
+      "published": "2026-11-22T05:06:55Z"
+    },
+    {
+      "title": "Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps",
+      "link": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html",
+      "source": "The Hacker News",
+      "published": "2026-11-22T05:03:41Z"
     },
     {
       "title": "A Single Malicious Webpage Let Researchers Hijack Meta Muse and Access Private Chats",
       "link": "https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html",
       "source": "The Hacker News",
       "published": "2026-11-21T11:53:07Z"
-    },
-    {
-      "title": "GnuPG Warns Critical GPGME Flaw Could Expose App Data via Malicious OpenPGP Keys",
-      "link": "https://thehackernews.com/2026/11/gnupg-warns-critical-gpgme-flaw-could.html",
-      "source": "The Hacker News",
-      "published": "2026-11-21T11:05:53Z"
-    },
-    {
-      "title": "Attackers' AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access",
-      "link": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html",
-      "source": "The Hacker News",
-      "published": "2026-11-21T11:03:17Z"
     },
     {
       "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud",
@@ -78,18 +90,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03",
       "source": "CISA Advisories",
       "published": "2026-11-19T12:00:00Z"
-    },
-    {
-      "title": "How to tell a cyberattack from a plain old outage",
-      "link": "https://arstechnica.com/security/2026/11/how-to-tell-a-cyberattack-from-a-plain-old-outage/",
-      "source": "Ars Technica",
-      "published": "2026-11-19T11:13:01Z"
-    },
-    {
-      "title": "ISC Stormcast For Thursday, November 19th, 2026 https://isc.sans.edu/podcastdetail/10186, (Thu, Nov 19th)",
-      "link": "https://isc.sans.edu/diary/rss/33536",
-      "source": "SANS ISC",
-      "published": "2026-11-19T02:00:03Z"
     }
   ]
 }
