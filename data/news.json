@@ -1,6 +1,72 @@
 {
-  "updated": "2026-11-24T06:05:49Z",
+  "updated": "2026-11-25T06:06:01Z",
   "items": [
+    {
+      "title": "ISC Stormcast For Wednesday, November 25th, 2026 https://isc.sans.edu/podcastdetail/10194, (Wed, Nov 25th)",
+      "link": "https://isc.sans.edu/diary/rss/33554",
+      "source": "SANS ISC",
+      "published": "2026-11-25T02:00:03Z"
+    },
+    {
+      "title": "Rackspace shuts down Spot cloud platform after security breach",
+      "link": "https://www.bleepingcomputer.com/news/security/rackspace-shuts-down-spot-cloud-platform-after-security-breach/",
+      "source": "BleepingComputer",
+      "published": "2026-11-24T21:37:30Z"
+    },
+    {
+      "title": "New Inception extortion gang launches large-scale vishing campaign",
+      "link": "https://www.bleepingcomputer.com/news/security/new-inception-extortion-gang-launches-large-scale-vishing-campaign/",
+      "source": "BleepingComputer",
+      "published": "2026-11-24T20:21:20Z"
+    },
+    {
+      "title": "Turnitin discloses cyberattack affecting customer-facing systems",
+      "link": "https://www.bleepingcomputer.com/news/security/turnitin-discloses-cyberattack-affecting-customer-facing-systems/",
+      "source": "BleepingComputer",
+      "published": "2026-11-24T18:59:52Z"
+    },
+    {
+      "title": "Iran-Aligned Volant Manticore Uses IPFS-Based KuboShell Backdoor in Espionage Campaigns",
+      "link": "https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html",
+      "source": "The Hacker News",
+      "published": "2026-11-24T16:54:07Z"
+    },
+    {
+      "title": "VMware vCenter Hit by Another Critical 9.8-Rated Auth Bypass Flaw After Zero-Day Exploitation",
+      "link": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html",
+      "source": "The Hacker News",
+      "published": "2026-11-24T13:28:26Z"
+    },
+    {
+      "title": "Okta Links ShinyHunters-Associated Vishing Group to New INCEPTION Data Leak Site",
+      "link": "https://thehackernews.com/2026/11/okta-links-shinyhunters-associated.html",
+      "source": "The Hacker News",
+      "published": "2026-11-24T13:28:21Z"
+    },
+    {
+      "title": "Amazon says hackers' AI agents found and exploited 0-day with little human input",
+      "link": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+      "source": "Ars Technica",
+      "published": "2026-11-24T12:30:05Z"
+    },
+    {
+      "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+      "source": "CISA Advisories",
+      "published": "2026-11-24T12:00:00Z"
+    },
+    {
+      "title": "Danfoss AK-SM 8xxA Series",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03",
+      "source": "CISA Advisories",
+      "published": "2026-11-24T12:00:00Z"
+    },
+    {
+      "title": "Schneider Electric EcoStruxure Power Build Rapsody software",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02",
+      "source": "CISA Advisories",
+      "published": "2026-11-24T12:00:00Z"
+    },
     {
       "title": "Scanning from Subnet 109.160.32.0/24, (Mon, Nov 23rd)",
       "link": "https://isc.sans.edu/diary/rss/33550",
@@ -12,72 +78,6 @@
       "link": "https://isc.sans.edu/diary/rss/33552",
       "source": "SANS ISC",
       "published": "2026-11-24T02:00:04Z"
-    },
-    {
-      "title": "South Korea’s power giant KEPCO confirms data breach impacting 1.5 million",
-      "link": "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/",
-      "source": "BleepingComputer",
-      "published": "2026-11-23T20:54:51Z"
-    },
-    {
-      "title": "OpenRouter drops AI providers over leaked prompts and secrets",
-      "link": "https://www.bleepingcomputer.com/news/security/openrouter-drops-ai-providers-over-leaked-prompts-and-secrets/",
-      "source": "BleepingComputer",
-      "published": "2026-11-23T20:00:20Z"
-    },
-    {
-      "title": "Microsoft Azure flaw exploited to steal customers' API credentials",
-      "link": "https://www.bleepingcomputer.com/news/security/microsoft-azure-flaw-exploited-to-steal-customers-api-credentials/",
-      "source": "BleepingComputer",
-      "published": "2026-11-23T19:42:20Z"
-    },
-    {
-      "title": "Webworm Suspected of Modifying SoftEther VPN to Evade Detection and Hide Remote Access",
-      "link": "https://thehackernews.com/2026/11/webworm-suspected-of-modifying.html",
-      "source": "The Hacker News",
-      "published": "2026-11-23T17:45:15Z"
-    },
-    {
-      "title": "⚡ Weekly Recap: VMware 0-Day, Java4Shell, NGINX2Root, Ruby2Shell, and a Whole Lot of Shell Trouble",
-      "link": "https://thehackernews.com/2026/11/weekly-recap-vmware-0-day-java4shell.html",
-      "source": "The Hacker News",
-      "published": "2026-11-23T15:10:48Z"
-    },
-    {
-      "title": "Critical binary-parser Flaw Enables JavaScript Injection via Malicious Parser Definitions",
-      "link": "https://thehackernews.com/2026/11/critical-binary-parser-flaw-enables.html",
-      "source": "The Hacker News",
-      "published": "2026-11-23T13:22:20Z"
-    },
-    {
-      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog",
-      "source": "CISA Advisories",
-      "published": "2026-11-23T12:00:00Z"
-    },
-    {
-      "title": "ISC Stormcast For Monday, November 23rd, 2026 https://isc.sans.edu/podcastdetail/10190, (Mon, Nov 23rd)",
-      "link": "https://isc.sans.edu/diary/rss/33548",
-      "source": "SANS ISC",
-      "published": "2026-11-23T02:00:04Z"
-    },
-    {
-      "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud",
-      "link": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
-      "source": "Krebs on Security",
-      "published": "2026-11-21T00:36:39Z"
-    },
-    {
-      "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
-      "link": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
-      "source": "Ars Technica",
-      "published": "2026-11-20T20:59:08Z"
-    },
-    {
-      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
-      "source": "CISA Advisories",
-      "published": "2026-11-20T12:00:00Z"
     }
   ]
 }
